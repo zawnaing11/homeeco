@@ -13,10 +13,12 @@
                         <label for="">Email :</label>
                         <input type="text" name="email" class="form-control">
                     </div>
+                    <div class="invalid-feedback">Please provide a valid informations.</div>
                     <div class="form-group">
                         <label for="">Password :</label>
                         <input type="password" name="password" class="form-control">
                     </div>
+                    <div class="invalid-feedback">Please provide a valid informations.</div>
                     <a href="{{ route('home') }}" class="btn btn-info">BACK</a>
                     <input type="submit" class="btn btn-success" value="LOGIN">
                 </form>

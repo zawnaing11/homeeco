@@ -10,7 +10,7 @@ Route::namespace('frontEnd')->group(function() {
 });
 
 // Admin
-Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'middleware' => 'CheckRole'],function() {
+Route::group(['namespace' => 'backEnd','prefix' => 'admin'],function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
     // Roles
     Route::get('/roles', 'RoleController@index')->name('admin.roles');
@@ -26,6 +26,6 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'middleware' => 'Che
 });
 // Master
 Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
-    Route::get('/', 'MasterController@dashboard')->name('master.dashboard');
+    Route::get('/', 'MasterController@index')->name('master.dashboard');
 
 });

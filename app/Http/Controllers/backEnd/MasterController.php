@@ -5,12 +5,14 @@ namespace App\Http\Controllers\backEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
+use App\User;
 
 class MasterController extends Controller
 {
     public function index()
     {
-        return view('backEnd.admin.master.index',compact('masters'));
+        $users = User::all();
+        return view('backEnd.admin.master.index',compact('users'));
     }
 
     public function create()
@@ -23,14 +25,18 @@ class MasterController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'phone' => 'integer',
+            'phone' => 'required|regex:/(0)[0-9]/',
             'role' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed'
         ]);
+        $request['name'] = strtolower($request->name);
+        $request['email'] = strtolower($request->email);
+        $request['password'] = bcrypt($request->password);
         $user = User::create($request->all());
+        $user->assignRole($request->role);
         if($user) {
-            return redirect()->route();
+            return redirect()->route('admin.masters');
         } else {
             return redirect()->back();
         }

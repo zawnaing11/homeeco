@@ -13,10 +13,7 @@ Route::namespace('frontEnd')->group(function() {
 Route::group(['namespace' => 'backEnd','prefix' => 'admin'],function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
     // Roles
-    Route::get('/roles', 'RoleController@index')->name('admin.roles');
-
-    Route::get('/role/create', 'RoleController@create')->name('admin.role.create');
-    Route::post('/role/create', 'RoleController@store')->name('admin.role.store');
+    Route::resource('/roles', 'RoleController');
 
     // Master
     Route::get('/masters', 'MasterController@index')->name('admin.masters');
@@ -25,7 +22,10 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin'],function() {
     Route::post('/master/create', 'MasterController@store')->name('admin.master.store');
 });
 // Master
-Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
+/*Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
     Route::get('/', 'MasterController@index')->name('master.dashboard');
-
-});
+});*/
+// Staff
+Route::get('/staff',function() {
+    return 'Staff Page';
+})->name('staff');

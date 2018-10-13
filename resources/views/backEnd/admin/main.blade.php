@@ -48,5 +48,6 @@
       </div>
     </footer>
     @include('backEnd.admin.includes.script')
+    @yield('js')
   </body>
 </html>

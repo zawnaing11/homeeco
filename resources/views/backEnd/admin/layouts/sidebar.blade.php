@@ -17,7 +17,7 @@
             <i class="nav-icon icon-puzzle"></i> Permissions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('admin.roles') }}">
+          <a class="nav-link" href="{{ route('roles.index') }}">
             <i class="nav-icon icon-puzzle"></i> Roles</a>
         </li>
       </ul>

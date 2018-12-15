@@ -5,7 +5,7 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Master Table
+          <i class="fa fa-align-justify"></i> User Table
           <a class="btn btn-success btn-sm float-right icon-plus icons d-block" href="{{ route('admin.master.create') }}"> New</a>
         </div>
         <div class="card-body">

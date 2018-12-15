@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\RoleRequest;
 
 class RoleController extends Controller
 {
     public function index()
     {
         $roles = Role::all();
-        return view('backEnd.admin.roles.index',compact('roles'));
+        return view('backEnd.admin.roles.index', compact('roles'));
     }
 
     public function create()
@@ -20,10 +21,31 @@ class RoleController extends Controller
         return view('backEnd.admin.roles.create');
     }
 
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         $name = strtolower($request->name);
         $role = Role::create(['name' => $name]);
-        return redirect()->route('admin.roles');
+        return redirect()->route('roles.index');
+    }
+
+    public function show($id)
+    {
+        $role = Role::findOrFail($id);
+        return view('backEnd.admin.roles.edit', compact('role'));
+    }
+
+    public function update(RoleRequest $request, $id)
+    {
+        $role = Role::find($id);
+        $role->name = strtolower($request->name);
+        $role->update();
+        return redirect()->route('roles.index')->with("Role Update Successfully");
+    }
+
+    public function destroy($id)
+    {
+        $role = Role::find($id);
+        $role->delete();
+        return redirect()->route("roles.index")->with('Role is Delete Successfully');
     }
 }

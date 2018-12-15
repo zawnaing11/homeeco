@@ -32,6 +32,7 @@
                 <label class="col-md-3 col-form-label" for="hf-phone">Phone</label>
                 <div class="col-md-9">
                   <input class="form-control" id="hf-phone" type="number" name="phone" placeholder="Enter Phone.." value ="{{ old('phone') }}" onkeydown="javascript: return event.keyCode !== 69">
+
                   @if($errors->first('phone'))
                   <span class="help-block">{{ $errors->first('phone') }}</span>
                   @endif
@@ -41,10 +42,10 @@
                 <label class="col-md-3 col-form-label" for="hf-phone">Role</label>
                 <div class="col-md-9">
                   <select class="form-control" id="select1" name="role">
-                    <option>Please select</option>
+                    <option value="">Please select</option>
                     @if(count($roles) > 0)
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}" @if(old('role') == $role->id) selected @endif>{{ ucfirst($role->name) }}</option>\
+                            <option value="{{ $role->id }}" @if(old('role') == $role->id) selected @endif>{{ ucfirst($role->name) }}</option>
                         @endforeach
                     @endif
                   </select>
@@ -56,7 +57,10 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="hf-password">Password</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="hf-password" type="password" name="password" placeholder="Enter Password..">
+                  <input class="form-control" id="hf-password" type="password" name="password" placeholder="Enter Password.." value="{{ old('password') }}">
+                  @if($errors->first('password'))
+                  <span class="help-block">{{ $errors->first('password') }}</span>
+                  @endif
                 </div>
               </div>
               <div class="form-group row">

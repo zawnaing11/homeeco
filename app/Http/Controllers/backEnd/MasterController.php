@@ -24,6 +24,8 @@ class MasterController extends Controller
 
     public function store(UserRequest $request)
     {
+        $request['name'] = strtolower($request->name);
+        $request['email'] = strtolower($request->email);
         $request['password'] = bcrypt($request->password);
         $user = User::create($request->all());
         $user->assignRole($request->role);

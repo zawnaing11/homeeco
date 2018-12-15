@@ -13,15 +13,11 @@ Route::namespace('frontEnd')->group(function() {
 Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // Roles
-    Route::get('/roles', 'RoleController@index')->name('roles');
-
-    Route::get('/role/create', 'RoleController@create')->name('role.create');
-    Route::post('/role/create', 'RoleController@store')->name('role.store');
+    Route::resource('/roles', 'RoleController');
 
     // Master
     Route::resource('/master', 'MasterController');
 });
-// Master
 // Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
 //     Route::get('/', 'MasterController@index')->name('master.dashboard');
 

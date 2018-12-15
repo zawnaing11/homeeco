@@ -1,0 +1,173 @@
+@extends('layouts.master')
+@section('content')
+    <?php
+        $years = range(\Carbon\Carbon::now()->year, \Carbon\Carbon::now()->addYear(10)->year);
+    ?>
+    <div class="row page-header">
+        <div class="col-sm-10">
+            <h1 class=" pageTitle">{{ trans('labels.farm.step1_title') }}</h1>
+        </div>
+    </div>
+    <!-- step1 -->
+    <form class="form-horizontal" method="post" action="{{ route('farm.step1_update',$step1->id) }}">
+        @csrf
+        <div class="row frameBorder">
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.year') }}</label>
+                <div class="col-sm-10 form-inline">
+                    <select class="form-control" name="year">
+                        @foreach($years as $key => $value)
+                            <option value="{{ $key }}" @if (old('year', $step1->year) == $key) selected @endif>{{ $value }} 年</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('year'))
+                        <div class="text-danger">{{ $errors->first('year') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.name') }}</label>
+                <div class="col-sm-10 form-inline">
+                    <input type="text" class="form-control" name="name" value="{{ old('name', $step1->name) }}">
+                    @if($errors->has('name'))
+                        <div class="text-danger">{{ $errors->first('name') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.staff_id') }}</label>
+                <div class="col-sm-10 form-inline">
+                    <select class="form-control" name="staff_id">
+                        <option value="">{{ trans('labels.farm.no_choose') }}</option>
+                        @foreach($staffs as $key => $staff)
+                            <option value="{{ $staff->id }}" @if (old('staff_id', $step1->staff_id) == $staff->id) selected @endif> {{ $staff->login_id }} </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('staff_id'))
+                        <div class="text-danger">{{ $errors->first('staff_id') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.worker') }}</label>
+                <div class="col-sm-10 form-inline">
+                    <ul class="flexList">
+                        @foreach($workers as $worker)
+                            <li class="flexItem3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="{{ $worker->id }}" name="worker[]" @if(in_array($worker->id,old('worker', $workerID))) checked @endif>{{ $worker->login_id }}
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+                    @if($errors->has('worker'))
+                        <div class="text-danger">{{ $errors->first('worker') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.prefecture') }}</label>
+                <div class="col-sm-10 form-inline">
+                    <ul class="flexList">
+                        <li class="flexItem4">
+                            <select name="prefecture" id="prefecture" class="form-control">
+                                <option value="">{{ trans('labels.farm.no_choose') }}</option>
+                                @foreach(config('option_common.prefectures') as $key => $value)
+                                    <option value="{{ $key }}" @if (old('prefecture', $step1->prefecture) == $key) selected @endif>{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                    </ul>
+                    @if($errors->has('prefecture'))
+                        <div class="text-danger">{{ $errors->first('prefecture') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.large') }}</label>
+                <div class="">
+                    <ul class="col-sm-10 form-group">
+                        <li class="flexItem4 col-sm-3">
+                            <select name="large" id="area2" class="form-control">
+                                <option data-group="" value="">{{ trans('labels.farm.no_choose') }}</option>
+                            </select>
+                            @if($errors->has('large'))
+                                <div class="text-danger">{{ $errors->first('large') }}</div>
+                            @endif
+                        </li>
+                        <li class="flexItem4 col-sm-4 form-group">
+                            <div class="makeInline x2 clrGreen col-sm-4">
+                               <i class="fa fa-chevron-right fa-lg"></i>
+                                {{ trans('labels.farm.medium') }}
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="medium" id="area3" class="form-control">
+                                    <option data-group="" value="">{{ trans('labels.farm.no_choose') }}</option>
+                                </select>
+                                @if($errors->has('medium'))
+                                    <div class="text-danger">{{ $errors->first('medium') }}</div>
+                                @endif
+                            </div>
+                        </li>
+                        <li class="flexItem4 col-sm-4 form-group">
+                            <div class="makeInline x2 clrGreen col-sm-4">
+                                <i class="fa fa-chevron-right fa-lg"></i>
+                                {{ trans('labels.farm.small') }}
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="small" id="area4" class="form-control">
+                                    <option data-group="" value="">{{ trans('labels.farm.no_choose') }}</option>
+                                </select>
+                                @if($errors->has('small'))
+                                    <div class="text-danger">{{ $errors->first('small') }}</div>
+                                @endif
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">{{ trans('labels.farm.planting_date') }}</label>
+                <div class="col-sm-9 form-group">
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" id="dateFrom" class="form-control date-picker" name="date_from" value="{{ old('date_from', date('Y/m/d', strtotime($step1->date_from))) }}">
+                        </div>
+                        @if($errors->has('date_from'))
+                            <div class="text-danger">{{ $errors->first('date_from') }}</div>
+                        @endif
+                    </div>
+                    <div class="makeInline x2 col-sm-1">～</div>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" id="dateTo" class="form-control date-picker" name="date_to" value="{{ old('date_to', date('Y/m/d', strtotime($step1->date_to))) }}">
+                        </div>
+                        @if($errors->has('date_to'))
+                            <div class="text-danger">{{ $errors->first('date_to') }}</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row nextBtField">
+            <div class="col-sm-12 x2 text-center">
+                <button type="submit" class="btn btn-primary">{{ trans('labels.farm.confirm') }}</button>
+            </div>
+        </div>
+    </form>
+@endsection
+@section('js')
+<script type="text/javascript" src="{{ asset('dist/js/farmStep.js') }}"></script>
+    <script>
+    var large = "{{ old('large', $categoryStep->large) }}";
+    var medium = "{{ old('medium', $categoryStep->medium) }}";
+    var small = "{{ old('small', $categoryStep->id) }}";
+    var hirarcheData = <?php echo json_encode($categories); ?>;
+</script>
+@endsection

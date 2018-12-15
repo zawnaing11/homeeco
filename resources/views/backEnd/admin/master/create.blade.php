@@ -12,7 +12,7 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="hf-name">Name</label>
                   <div class="col-md-9">
-                    <input class="form-control" id="hf-name" type="text" name="name" placeholder="Enter Name..">
+                    <input class="form-control" id="hf-name" type="text" name="name" placeholder="Enter Name.." value="{{ old('name') }}">
                     @if($errors->first('name'))
                   <span class="help-block">{{ $errors->first('name') }}</span>
                   @endif
@@ -22,7 +22,7 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="hf-email">Email</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="hf-email" type="email" name="hf-email" placeholder="Enter Email..">
+                  <input class="form-control" id="hf-email" type="email" name="email" placeholder="Enter Email.." value="{{ old('email') }}">
                   @if($errors->first('email'))
                   <span class="help-block">{{ $errors->first('email') }}</span>
                   @endif
@@ -31,7 +31,7 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="hf-phone">Phone</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="hf-phone" type="text" name="phone" placeholder="Enter Phone..">
+                  <input class="form-control" id="hf-phone" type="text" name="phone" placeholder="09....." value="{{ old('phone') }}">
                   @if($errors->first('phone'))
                   <span class="help-block">{{ $errors->first('phone') }}</span>
                   @endif
@@ -41,10 +41,14 @@
                 <label class="col-md-3 col-form-label" for="hf-phone">Role</label>
                 <div class="col-md-9">
                   <select class="form-control" id="select1" name="role">
-                    <option>Please select</option>
+                    <option value="">Please select</option>
                     @if(count($roles) > 0)
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>\
+                            <option value="{{ $role->name }}" 
+                            @if(old('role') == $role->name)
+                            selected="selected" 
+                            @endif
+                                >{{ ucfirst($role->name) }}</option>\
                         @endforeach
                     @endif
                   </select>
@@ -56,24 +60,24 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="hf-password">Password</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="hf-password" type="password" name="password" placeholder="Enter Password..">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="hf-password">Confirm Password</label>
-                <div class="col-md-9">
-                  <input class="form-control" id="hf-password" type="password" name="password" placeholder="Enter Confirm Password..">
+                  <input class="form-control" id="hf-password" type="password" name="password" placeholder="Enter Password.." value="{{ old('password') }}">
                   @if($errors->first('password'))
                   <span class="help-block">{{ $errors->first('password') }}</span>
                   @endif
                 </div>
               </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="hf-password">Confirm Password</label>
+                <div class="col-md-9">
+                  <input class="form-control" id="hf-password" type="password" name="password_confirmation" placeholder="Enter Confirm Password..">
+                </div>
+              </div>
           </div>
           <div class="card-footer">
+            <button class="btn btn-sm btn-danger" type="reset">
+              <i class="fa fa-ban"></i> Back</button>
             <button class="btn btn-sm btn-primary" type="submit">
               <i class="fa fa-dot-circle-o"></i> Submit</button>
-            <button class="btn btn-sm btn-danger" type="reset">
-              <i class="fa fa-ban"></i> Reset</button>
           </div>
         </form>
         </div>

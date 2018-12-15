@@ -5,10 +5,11 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Master Table
+          <i class="fa fa-align-justify"></i> User Table
           <a class="btn btn-success btn-sm float-right icon-plus icons d-block" href="{{ route('admin.master.create') }}"> New</a>
         </div>
         <div class="card-body">
+        @if(count($users) > 0)
           <table class="table table-responsive-sm table-bordered">
             <thead>
               <tr>
@@ -19,48 +20,21 @@
               </tr>
             </thead>
             <tbody>
+                @foreach($users as $user)
               <tr>
-                <td>Pompeius René</td>
-                <td>2012/01/01</td>
-                <td>Member</td>
+                <td>{{ ucfirst($user->name) }}</td>
+                <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                <td>{{ ucfirst($user->getRoleNames()[0]) }}</td>
                 <td>
                   <span class="badge badge-success">Active</span>
                 </td>
               </tr>
-              <tr>
-                <td>Paĉjo Jadon</td>
-                <td>2012/02/01</td>
-                <td>Staff</td>
-                <td>
-                  <span class="badge badge-danger">Banned</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Micheal Mercurius</td>
-                <td>2012/02/01</td>
-                <td>Admin</td>
-                <td>
-                  <span class="badge badge-secondary">Inactive</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Ganesha Dubhghall</td>
-                <td>2012/03/01</td>
-                <td>Member</td>
-                <td>
-                  <span class="badge badge-warning">Pending</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Hiroto Šimun</td>
-                <td>2012/01/21</td>
-                <td>Staff</td>
-                <td>
-                  <span class="badge badge-success">Active</span>
-                </td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
+        @else
+        <p>No Data For User Table</p>
+        @endif
         </div>
       </div>
     </div>

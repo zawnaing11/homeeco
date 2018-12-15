@@ -18,3 +18,7 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],fu
     // Master
     Route::resource('/master', 'MasterController');
 });
+// Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
+//     Route::get('/', 'MasterController@index')->name('master.dashboard');
+
+// });

@@ -10,22 +10,19 @@ Route::namespace('frontEnd')->group(function() {
 });
 
 // Admin
-Route::group(['namespace' => 'backEnd','prefix' => 'admin'],function() {
-    Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
+Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],function() {
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // Roles
-    Route::get('/roles', 'RoleController@index')->name('admin.roles');
+    Route::get('/roles', 'RoleController@index')->name('roles');
 
-    Route::get('/role/create', 'RoleController@create')->name('admin.role.create');
-    Route::post('/role/create', 'RoleController@store')->name('admin.role.store');
+    Route::get('/role/create', 'RoleController@create')->name('role.create');
+    Route::post('/role/create', 'RoleController@store')->name('role.store');
 
     // Master
-    Route::get('/masters', 'MasterController@index')->name('admin.masters');
-
-    Route::get('/master/create', 'MasterController@create')->name('admin.master.create');
-    Route::post('/master/create', 'MasterController@store')->name('admin.master.store');
+    Route::resource('/master', 'MasterController');
 });
 // Master
-Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
-    Route::get('/', 'MasterController@index')->name('master.dashboard');
+// Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
+//     Route::get('/', 'MasterController@index')->name('master.dashboard');
 
-});
+// });

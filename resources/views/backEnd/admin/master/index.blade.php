@@ -9,58 +9,61 @@
           <a class="btn btn-success btn-sm float-right icon-plus icons d-block" href="{{ route('admin.master.create') }}"> New</a>
         </div>
         <div class="card-body">
-          <table class="table table-responsive-sm table-bordered">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Date registered</th>
-                <th>Role</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pompeius René</td>
-                <td>2012/01/01</td>
-                <td>Member</td>
-                <td>
-                  <span class="badge badge-success">Active</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Paĉjo Jadon</td>
-                <td>2012/02/01</td>
-                <td>Staff</td>
-                <td>
-                  <span class="badge badge-danger">Banned</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Micheal Mercurius</td>
-                <td>2012/02/01</td>
-                <td>Admin</td>
-                <td>
-                  <span class="badge badge-secondary">Inactive</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Ganesha Dubhghall</td>
-                <td>2012/03/01</td>
-                <td>Member</td>
-                <td>
-                  <span class="badge badge-warning">Pending</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Hiroto Šimun</td>
-                <td>2012/01/21</td>
-                <td>Staff</td>
-                <td>
-                  <span class="badge badge-success">Active</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            @if(count($masters) > 0) 
+              <table class="table table-responsive-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date registered</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($masters as $master)
+                  <tr>
+                    <td>{{ ucfirst($master->name) }}</td>
+                    <td>{{ $master->email }}</td>
+                    <td>{{ date('d-m-Y', strtotime($master->created_at)) }}</td>
+                    <td>{{ $master->phone }}</td>
+                    <td>
+                      <span class="badge badge-success">Active</span>
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.master.edit', $master->id) }}" class="btn btn-info btn-sm">Edit</a>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal_{{ $master->id }}">Delete</button>
+                    </td>
+                    </tr>
+                        <div class="modal fade" id="myModal_{{ $master->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        {{ $master->name }} is delete ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                                        <form action="{{ route('admin.master.destroy', $master->id) }}" method="post">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button class="btn btn-info btn-sm" type="submit">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </tbody>
+              </table>
+              <div class="pull-right">
+                  {{ $masters->links() }}
+              </div>
+            @else
+                <div class="alert alert-warning">
+                  <strong>Warning!</strong> You should <a href="#" class="alert-link">read this message</a>.
+                </div>
+            @endif
         </div>
       </div>
     </div>

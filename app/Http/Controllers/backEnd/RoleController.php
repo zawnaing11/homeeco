@@ -25,7 +25,7 @@ class RoleController extends Controller
     {
         $name = strtolower($request->name);
         $role = Role::create(['name' => $name]);
-        return redirect()->route('roles.index');
+        return redirect()->route('admin.role.index');
     }
 
     public function show($id)
@@ -39,13 +39,13 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->name = strtolower($request->name);
         $role->update();
-        return redirect()->route('roles.index')->with("Role Update Successfully");
+        return redirect()->route('admin.role.index')->with("Role Update Successfully");
     }
 
     public function destroy($id)
     {
         $role = Role::find($id);
         $role->delete();
-        return redirect()->route("roles.index")->with('Role is Delete Successfully');
+        return redirect()->route("admin.role.index")->with('Role is Delete Successfully');
     }
 }

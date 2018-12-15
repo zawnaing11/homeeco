@@ -3,7 +3,7 @@
   <ul class="nav">
     <li class="nav-title">General</li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('home') }}">
+      <a class="nav-link" href="{{ route('admin.dashboard') }}">
         <i class="nav-icon icon-speedometer"></i> Dashboard
       </a>
     </li>
@@ -27,7 +27,7 @@
         <i class="nav-icon icon-list"></i> Master</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('admin.masters') }}">
+          <a class="nav-link" href="{{ route('admin.master.index') }}">
             <i class="nav-icon icon-puzzle"></i> Index</a>
         </li>
       </ul>

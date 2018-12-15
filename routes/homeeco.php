@@ -13,7 +13,7 @@ Route::namespace('frontEnd')->group(function() {
 Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // Roles
-    Route::resource('/roles', 'RoleController');
+    Route::resource('/role', 'RoleController');
 
     // Master
     Route::resource('/master', 'MasterController');

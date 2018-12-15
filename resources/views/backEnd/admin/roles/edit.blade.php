@@ -6,7 +6,7 @@
             <div class="card-header">
                 <strong>Edit</strong> Roles
             </div>
-            <form action="{{ route('roles.update',$role->id) }}" method="post">
+            <form action="{{ route('admin.role.update',$role->id) }}" method="post">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
                 <div class="card-body">

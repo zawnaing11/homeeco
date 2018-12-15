@@ -25,7 +25,7 @@
                             <td>{{ $role->created_at->format('d/m/Y') }}</td>
                             <td>{{ $role->updated_at->format('d/m/Y') }}</td>
                             <td>
-                                <a href="{{ route('roles.show',$role->id) }}" class="btn btn-info btn-sm icon-note icons"> Edit</a>
+                                <a href="{{ route('admin.role.show',$role->id) }}" class="btn btn-info btn-sm icon-note icons"> Edit</a>
                                 <a href=""  id="{{ $role->id }}" class="icon-trash icons btn-sm btn btn-danger deleteBtn" name="{{ $role->name }}" data-toggle="modal" data-target="#deleteRole"> Delete</a>
                             </td>
                         </tr>
@@ -46,7 +46,7 @@
                     <div class="card-header">
                         <strong>Create</strong> Roles
                     </div>
-                    <form action="{{ route('roles.store') }}" method="post">
+                    <form action="{{ route('admin.role.store') }}" method="post">
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group">
@@ -99,7 +99,7 @@
         $('.deleteBtn').on('click', function() {
             var delID = $(this).attr('id');
             var delName = $(this).attr('name');
-            var redirectUrl = '/admin/roles/' + delID;
+            var redirectUrl = '/admin/role/' + delID;
             $('.deleteName').html(delName);
             $('#deleteRole form').attr('action',redirectUrl);
         });

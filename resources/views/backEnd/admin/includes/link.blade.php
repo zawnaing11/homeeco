@@ -6,3 +6,5 @@
 <!-- Main styles for this application-->
 <link href="{{ asset('homeeco/backEnd/admin/component/css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('homeeco/backEnd/admin/component/css/pace.min.css') }}" rel="stylesheet">
+<!-- Custom Css -->
+<link href="{{ asset('homeeco/backEnd/admin/css/homeeco.css') }}" rel="stylesheet">

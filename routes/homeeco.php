@@ -17,6 +17,13 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],fu
 
     // Master
     Route::resource('/master', 'MasterController');
+
+    // Number
+    Route::get('/number', 'NumberController@index')->name('number.index');
+    // get Number
+    Route::get('/product/{id}', 'NumberController@getProduct')->name('get.product');
+    // Number Save
+    Route::post('/product/save', 'NumberController@saveProduct')->name('save.product');
 });
 // Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
 //     Route::get('/', 'MasterController@index')->name('master.dashboard');

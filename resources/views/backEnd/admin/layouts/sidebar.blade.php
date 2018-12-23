@@ -32,6 +32,11 @@
         </li>
       </ul>
     </li>
+    <li class="nav-item nav-dropdown">
+      <a class="nav-link" href="{{ route('admin.number.index') }}">
+        <i class="nav-icon icon-list"></i>Input Number
+      </a>
+    </li>
   </ul>
 </nav>
 <button class="sidebar-minimizer brand-minimizer" type="button"></button>

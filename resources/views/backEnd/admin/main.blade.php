@@ -18,6 +18,7 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>Admin</title>
     @include('backEnd.admin.includes.link')
+    @yield('styles')
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     @include('backEnd.admin.layouts.navbar')

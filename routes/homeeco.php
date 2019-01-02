@@ -18,12 +18,16 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],fu
     // Master
     Route::resource('/master', 'MasterController');
 
-    // Number
+    // Input Number
     Route::get('/number', 'NumberController@index')->name('number.index');
     // get Number
     Route::get('/product/{id}', 'NumberController@getProduct')->name('get.product');
     // Number Save
     Route::post('/product/save', 'NumberController@saveProduct')->name('save.product');
+    // Show Number List
+    Route::get('/products/list', 'NumberController@showProduct')->name('show.product');
+    // get all number depend on limit price
+    Route::get('/products/limit', 'NumberController@getProducts')->name('get.products');
 });
 // Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
 //     Route::get('/', 'MasterController@index')->name('master.dashboard');

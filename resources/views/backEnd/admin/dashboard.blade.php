@@ -9,7 +9,7 @@
                         <i class="fa fa-trophy fa-5x"></i>
                     </div>
                     <div class="col-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge">{{ $lucky_number }}</div>
                         <div>Lucky Number</div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <i class="fa fa-money fa-5x"></i>
                     </div>
                     <div class="col-9 text-right">
-                        <div><span class="huge">1000</span>Ks</div>
+                        <div><span class="huge">{{ $amount }}</span> Ks</div>
                         <div>Total Amount</div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <i class="fa fa-users fa-5x"></i>
                     </div>
                     <div class="col-9 text-right">
-                        <div class="huge">3</div>
+                        <div class="huge">{{ $peoples }}</div>
                         <div>Members</div>
                     </div>
                 </div>

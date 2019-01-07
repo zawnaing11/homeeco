@@ -25,9 +25,14 @@
                         <label for="">Number</label>
                         <div class="input-group mb-2">
                             <input type="text" class="form-control" id="inlineFormInputGroupUsername2" ng-model="product">
-                            <div class="input-group-prepend" ng-click="sendData()">
+                            <div class="input-group-prepend" ng-click="sendData()"  ng-if="clickSend == true">
                                 <div class="input-group-text">
                                     <i class="fa fa-send"></i>
+                                </div>
+                            </div>
+                            <div class="input-group-prepend" ng-if="clickSend == false">
+                                <div class="input-group-text">
+                                    <i class="fa fa-ban"></i>
                                 </div>
                             </div>
                         </div>
@@ -43,22 +48,26 @@
                 <span>{% selectUserName %}</span>
             </div>
             <div class="card-body">
-                <table id="" class="table table-bordered" ng-if="!errorList.noData">
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="(key, number) in numbers">
-                            <td>{% key %}</td>
-                            <td>
-                                    {% number %}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="" class="table table-bordered" ng-if="!errorList.noData">
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, number) in userData">
+                                <td>{% number.number %}</td>
+                                <td>
+                                        {% number.price %}
+                                </td>
+                                <td>{% number.total %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div ng-if="errorList.noData" class="alert alert-warning">{% errorList.noData %}</div>
             </div>
         </div>
@@ -67,7 +76,7 @@
 @endsection
 @section('js')
 <script src="{{ asset('homeeco/backEnd/admin/js/angularjs/angular.js') }}"></script>
-<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/app.js') }}"></script>
-<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/controller.js') }}"></script>
-<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/service.js') }}"></script>
+<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/input_number/app.js') }}"></script>
+<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/input_number/controller.js') }}"></script>
+<script src="{{ asset('homeeco/backEnd/admin/js/angularjs/input_number/service.js') }}"></script>
 @endsection

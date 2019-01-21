@@ -7,9 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="form-group row">
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" ng-model="limit" ng-init="limit='0'">
-                        </div>
+                        <input type="text" class="form-control col-sm-7 mb-2" ng-model="limit" ng-init="limit='0'">
                         <button class="btn btn-success col-sm-5" ng-click="search()">Search</button>
                     </div>
                 </div>
@@ -21,13 +19,11 @@
                                     <thead>
                                         <th>Number</th>
                                         <th>Price</th>
-                                        <th>Total</th>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="product in products">
                                             <td>{% product.number %}</td>
-                                            <td>{% product.price %}</td>
-                                            <td>{% product.total %}</td>
+                                            <td>{% product.output %}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -41,6 +37,7 @@
 </div>
 @endsection
 @section('js')
+
 <script src="{{ asset('homeeco/backEnd/admin/js/angularjs/angular.js') }}"></script>
 <script src="{{ asset('homeeco/backEnd/admin/js/angularjs/product_list/app.js') }}"></script>
 <script src="{{ asset('homeeco/backEnd/admin/js/angularjs/product_list/controller.js') }}"></script>

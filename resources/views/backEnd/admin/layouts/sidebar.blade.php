@@ -13,10 +13,6 @@
         <i class="nav-icon icon-list"></i> Authorized</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="base/breadcrumb.html">
-            <i class="nav-icon icon-puzzle"></i> Permissions</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.role.index') }}">
             <i class="nav-icon icon-puzzle"></i> Roles</a>
         </li>

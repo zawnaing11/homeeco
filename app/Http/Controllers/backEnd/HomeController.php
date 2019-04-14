@@ -10,11 +10,11 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        $subject = file_get_contents('http://hopes.glo.or.th/home.php');
-        $first_step = explode('<td align="center" class="lineLeft"><span class="bigBold2">', $subject);
-        $second_step = explode('</span></td>', $first_step[1]);
-        $number = $second_step[0];
-        $lucky_number = substr("$number", -3);
+        $subject = file_get_contents('http://www.thailotto.org/thai-national-lottery/');
+        $first_step = explode('<table class="GeneratedTable">', $subject);
+        $second_step = explode('<td>', $first_step[1]);
+        $number = $second_step[3];  //get number
+        $lucky_number = substr("$number", 0, 3);
         $datas = Product::where('number', $lucky_number)->select('price')->get();
         $amount = [];
         foreach($datas as $data) {

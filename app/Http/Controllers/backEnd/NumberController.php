@@ -13,12 +13,12 @@ class NumberController extends Controller
 {
     public function index()
     {
-        $masters = $masters = User::role('master')->get();
+        $masters = User::role('master')->get();
         return view('backEnd.admin.number.index', compact('masters'));
     }
 
     public function getProduct($id) {
-        $drawDate = '2018-12-16 16:00:00';
+        $drawDate = $this->getDate();
         $products = Product::where([
             ['user_id', '=' , $id],
             ['created_at', '>', $drawDate]
@@ -40,10 +40,11 @@ class NumberController extends Controller
     public function saveProduct(Request $request)
     {
         $datas = $request->all();
-        $drawDate = '2018-12-16 16:00:00';
+        $drawDate = $this->getDate();
 
         foreach($datas['number'] as $value) {
             $price = $datas['price'];
+            //check products is exists or not
             $number = Product::where([
                 ['user_id', '=', $datas['user_id']],
                 ['number', '=', $value],
@@ -74,7 +75,7 @@ class NumberController extends Controller
     }
 
     public function getProducts() {
-        $drawDate = '2018-12-16 16:00:00';
+        $drawDate = $this->getDate();
         $products = Product::where([
             ['created_at', '>', $drawDate]
         ])
@@ -108,5 +109,14 @@ class NumberController extends Controller
     public function removeComma($data) {
         $number = explode(',', $data);
         return $number;
+    }
+
+    public function getDate() {
+        $subject = file_get_contents('http://www.thailotto.org/thai-national-lottery/');
+        $first_step = explode('<table class="GeneratedTable">', $subject);
+        $second_step = explode('<td>', $first_step[1]);
+        $number = $second_step[1];  //get date
+        $drawDate = substr($number, 0, 10);
+        return $drawDate;
     }
 }

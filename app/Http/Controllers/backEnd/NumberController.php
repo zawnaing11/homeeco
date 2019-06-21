@@ -98,6 +98,7 @@ class NumberController extends Controller
             $products[$count]['total'] = array_sum($price);
             $count++;
         }
+        
         return response()->json(
             array(
                 'success' => true,
@@ -112,11 +113,13 @@ class NumberController extends Controller
     }
 
     public function getDate() {
-        $subject = file_get_contents('http://www.thailotto.org/thai-national-lottery/');
-        $first_step = explode('<table class="GeneratedTable">', $subject);
-        $second_step = explode('<td>', $first_step[1]);
-        $number = $second_step[1];  //get date
-        $drawDate = substr($number, 0, 10);
+        $subject = file_get_contents('https://www.lottery.co.th/');
+        // dd($subject);
+        // $first_step = explode('<table class="GeneratedTable">', $subject);
+        // $second_step = explode('<td>', $first_step[1]);
+        // $number = $second_step[1];  //get date
+        // $drawDate = substr($number, 0, 10);
+        $drawDate = '2019-05-10';
         return $drawDate;
     }
 }

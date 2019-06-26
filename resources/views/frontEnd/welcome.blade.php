@@ -21,12 +21,20 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a>
-                </li>
+                @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}">Logout</a>
                 </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a>
+                </li>
+                @endif
+                @hasanyrole('admin|master')
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('admin.dashboard') }}">Admin</a>
+                </li>
+                @endhasrole
             </ul>
         </div>
     </div>

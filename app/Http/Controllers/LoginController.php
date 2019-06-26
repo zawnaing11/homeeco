@@ -30,7 +30,7 @@ class LoginController extends Controller
         if ($authUser) {
             $user = Auth::user();
             if ($user->hasRole('master')) {
-                return redirec()->route('master');
+                return redirect()->route('master');
             } elseif ($user->hasRole('staff')) {
                 return redirect()->route('staff');
             } else {

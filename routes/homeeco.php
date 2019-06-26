@@ -10,7 +10,7 @@ Route::namespace('frontEnd')->group(function() {
 });
 
 // Admin
-Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],function() {
+Route::group(['middleware' => 'checkAdmin', 'namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // Roles
     Route::resource('/role', 'RoleController');
@@ -29,7 +29,11 @@ Route::group(['namespace' => 'backEnd','prefix' => 'admin', 'as' => 'admin.'],fu
     // get all number depend on limit price
     Route::get('/products/limit', 'NumberController@getProducts')->name('get.products');
 });
-// Route::group(['namespace' => 'backEnd\Master', 'prefix' => 'master'], function() {
-//     Route::get('/', 'MasterController@index')->name('master.dashboard');
+// Master
+Route::get('/master', function() {
+    return 'welcome master';
+})->name('master');
 
-// });
+Route::get('/staff', function() {
+    return 'welcome staff';
+})->name('staff');

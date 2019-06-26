@@ -21,7 +21,7 @@
                 <div class="card-footer">
                     <button class="btn btn-sm btn-primary" type="submit">
                     <i class="fa fa-dot-circle-o"></i> Submit</button>
-                    <button type="button" class="btn btn-sm btn-secondary"><i class="fa fa-ban"></i> Cancel</button>
+                    <a href="{{ route('admin.role.index') }}" class="btn btn-sm btn-secondary"><i class="fa fa-ban"></i> Cancel</a>
                 </div>
             </form>
         </div>

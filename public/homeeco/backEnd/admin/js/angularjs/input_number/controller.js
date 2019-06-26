@@ -9,9 +9,9 @@ angular.module('mainCtrl', ['mainService'])
     $scope.errorList = {};
     $scope.clickSend = true;
 
-    // if ($scope.userData.length == 0 || $scope.userData == null) {
-    //     $scope.errorList.noData = 'You have no data !'
-    // }
+    if ($scope.userData.length == 0 || $scope.userData == null) {
+        $scope.errorList.noData = 'You have no data !'
+    }
     // get data from db
     function getData(param) {
         Product.getData(param, function(data, status) {

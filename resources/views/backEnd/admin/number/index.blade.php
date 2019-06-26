@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 @endsection
 @section('content')
-<div class="row" ng-app="app" ng-controller="numberCtrl">
+<div class="row" ng-app="app" ng-controller="numberCtrl" ng-cloak>
     <div class="col-sm-5">
         <div class="card">
             <div class="card-header">
@@ -17,7 +17,7 @@
                         <select ng-model="user" ng-init="user = '0'" class="form-control" ng-change="userSelectChange()">
                                 <option value="0">Select User</option>
                                 @foreach($masters as $key => $value)
-                                <option value={{ $value->id.','.$value->name }}>{{ $value->name }}</option>
+                                <option value="{{ $value->id.','.$value->name }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>
                     </div>
@@ -60,9 +60,7 @@
                         <tbody>
                             <tr ng-repeat="(key, number) in userData">
                                 <td>{% number.number %}</td>
-                                <td>
-                                        {% number.price %}
-                                </td>
+                                <td>{% number.price %}/td>
                                 <td>{% number.total %}</td>
                             </tr>
                         </tbody>

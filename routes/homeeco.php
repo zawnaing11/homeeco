@@ -14,10 +14,8 @@ Route::group(['middleware' => 'checkAdmin', 'namespace' => 'backEnd','prefix' =>
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // Roles
     Route::resource('/role', 'RoleController');
-
     // Master
     Route::resource('/master', 'MasterController');
-
     // Input Number
     Route::get('/number', 'NumberController@index')->name('number.index');
     // get Number
@@ -28,6 +26,8 @@ Route::group(['middleware' => 'checkAdmin', 'namespace' => 'backEnd','prefix' =>
     Route::get('/products/list', 'NumberController@showProduct')->name('show.product');
     // get all number depend on limit price
     Route::get('/products/limit', 'NumberController@getProducts')->name('get.products');
+    // list for lucky number group
+    Route::get('/lucky_number/list', 'NumberController@luckyNumberList')->name('lucky_number.list');
 });
 // Master
 Route::get('/master', function() {

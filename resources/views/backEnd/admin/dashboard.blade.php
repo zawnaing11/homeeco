@@ -14,12 +14,12 @@
                     </div>
                 </div>
             </div>
-            <a href="">
+            <a href="{{ route('admin.lucky_number.list') }}">
                 <div class="card-footer">
-                <span class="pull-left">View Details</span>
-                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                <span class="clearfix"></span>
-            </div>
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <span class="clearfix"></span>
+                </div>
             </a>
         </div>
     </div>

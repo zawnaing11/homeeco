@@ -17,7 +17,8 @@ class NumberController extends Controller
         return view('backEnd.admin.number.index', compact('masters'));
     }
 
-    public function getProduct($id) {
+    public function getProduct($id)
+    {
         $drawDate = $this->getDate();
         $products = Product::where([
             ['user_id', '=' , $id],
@@ -74,7 +75,8 @@ class NumberController extends Controller
         return view('backEnd.admin.number.show');
     }
 
-    public function getProducts() {
+    public function getProducts()
+    {
         $drawDate = $this->getDate();
         $products = Product::where([
             ['created_at', '>', $drawDate]
@@ -107,12 +109,19 @@ class NumberController extends Controller
             ));
     }
 
-    public function removeComma($data) {
+    public function luckyNumberList()
+    {
+        return view('backEnd.admin.number.lucky_number');
+    }
+
+    public function removeComma($data)
+    {
         $number = explode(',', $data);
         return $number;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         $subject = file_get_contents('https://www.lottery.co.th/');
         // dd($subject);
         // $first_step = explode('<table class="GeneratedTable">', $subject);
